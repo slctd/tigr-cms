@@ -1,0 +1,12 @@
+%h1= @page.title
+#editable{contenteditable: 'true'}
+  = raw @page.content
+
+
+.hide= render 'form'
+
+= link_to 'Save', '#', id: 'save-content'
+
+= link_to 'Back', root_path
+
+-#= link_to 'edit', edit_page_path(@page)

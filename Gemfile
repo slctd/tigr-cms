@@ -5,6 +5,15 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'haml-rails'
+gem 'mongoid'
+
+gem 'mongoid-paperclip', require: 'mongoid_paperclip'
+gem 'mini_magick'
+gem 'ckeditor', github: 'galetahub/ckeditor'
+
+gem 'formtastic'
+gem 'formtastic-bootstrap'
 
 
 # Gems used only for assets and not required
@@ -17,6 +26,9 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'bootstrap-sass-rails'
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'

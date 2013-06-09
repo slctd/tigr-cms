@@ -1,4 +1,15 @@
 TigrCms::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
+  root to: 'pages#main'
+
+  resources :pages
+
+  pages = %w(main)
+  pages.each do |page|
+    match page, to: "pages##{page}", as: page.to_sym
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,7 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Page.destroy_all
+
+Page.create permalink: 'main', title: 'Главная страница', content: 'Мобильный кондиционер Timberk ICE.BEE - «Продукт года» 2013 года'
+Page.create permalink: 'description', title: 'Описание', content: 'Мобильный кондиционер Timberk ICE.BEE - «Продукт года» 2013 года'
+Page.create permalink: 'specification', title: 'Технические характеристики', content: 'Мобильный кондиционер Timberk ICE.BEE - «Продукт года» 2013 года'
+Page.create permalink: 'installation', title: 'Установка', content: 'Мобильный кондиционер Timberk ICE.BEE - «Продукт года» 2013 года'
+Page.create permalink: 'competition', title: 'Продукт', content: 'Мобильный кондиционер Timberk ICE.BEE - «Продукт года» 2013 года'
+Page.create permalink: 'information', title: 'Полезная информация', content: 'Мобильный кондиционер Timberk ICE.BEE - «Продукт года» 2013 года'
