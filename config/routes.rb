@@ -10,6 +10,8 @@ TigrCms::Application.routes.draw do
     match page, to: "pages##{page}", as: page.to_sym
   end
 
+  match ':permalink', to: 'pages#show'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

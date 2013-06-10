@@ -7,21 +7,11 @@ class PagesController < ApplicationController
       @page = Page.find_by(permalink: page)
     end
   end
-  # GET /pages
-  # GET /pages.json
-  def index
-    @pages = Page.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pages }
-    end
-  end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @page = Page.find(params[:id])
+    @page = Page.find_by(permalink: params[:permalink])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,11 +28,6 @@ class PagesController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @page }
     end
-  end
-
-  # GET /pages/1/edit
-  def edit
-    @page = Page.find(params[:id])
   end
 
   # POST /pages

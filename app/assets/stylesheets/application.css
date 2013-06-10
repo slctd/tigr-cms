@@ -14,3 +14,6 @@
  *= require formtastic-bootstrap
  *= require_tree .
  */
+body {
+    padding-top: 60px;
+}
