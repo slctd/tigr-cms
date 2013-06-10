@@ -1,8 +1,7 @@
 %h1= @page.title
-#editable{contenteditable: 'true', 'data-update-url' => page_update_content_url(@page)}
+#editable{contenteditable: 'true', data: {update_url: page_update_content_url(@page)}}
   = raw @page.content
 
-
-= link_to 'Back', root_path
+-#= link_to 'Back', root_path
 
 -#= link_to 'edit', edit_page_path(@page)

@@ -5,8 +5,7 @@
 jQuery ->
   $("#editable").on "blur", ->
     url = $(this).data('update-url')
-    id = $(this).data('id')
-    $.post url, 
+    $.post url,
       content: CKEDITOR.instances.editable.getData()
     false
 
