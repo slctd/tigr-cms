@@ -78,6 +78,12 @@ class PagesController < ApplicationController
     end
   end
 
+  def update_content
+    @page = Page.find(params[:page_id])
+    @page.update_attributes(content: params[:content])
+    render nothing: true
+  end
+
   # DELETE /pages/1
   # DELETE /pages/1.json
   def destroy

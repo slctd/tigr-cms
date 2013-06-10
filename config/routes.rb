@@ -3,7 +3,9 @@ TigrCms::Application.routes.draw do
 
   root to: 'pages#main'
 
-  resources :pages
+  resources :pages do
+    post :update_content
+  end
 
   pages = %w(main)
   pages.each do |page|

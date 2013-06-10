@@ -1,3 +1,4 @@
+# coding: utf-8
 Page.destroy_all
 
 Page.create permalink: 'main', title: 'Главная страница', content: 'Мобильный кондиционер Timberk ICE.BEE - «Продукт года» 2013 года'
