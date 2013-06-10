@@ -11,7 +11,7 @@
       .row
         .span4
           .well.sidebar-nav
-            = content_tag :ul, class: 'nav nav-list' do
+            = content_tag :ul, class: 'nav nav-list', id: 'pages', data: {update_url: sort_pages_url} do
               - @pages.each do |page|
                 = content_tag_for :li, page do
                   = link_to page.title, "/#{page.permalink}"

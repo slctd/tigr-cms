@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def get_pages
-    @pages = Page.ne(permalink: 'main')
+    @pages = Page.all_without_main
   end
 end

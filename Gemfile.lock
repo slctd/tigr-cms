@@ -72,6 +72,9 @@ GEM
     jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.3)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.0)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -86,6 +89,8 @@ GEM
       tzinfo (~> 0.3.22)
     mongoid-paperclip (0.0.8)
       paperclip (>= 2.3.6)
+    mongoid_orderable (1.2.0)
+      mongoid
     moped (1.5.0)
     multi_json (1.7.6)
     origin (1.1.0)
@@ -157,9 +162,11 @@ DEPENDENCIES
   formtastic-bootstrap
   haml-rails
   jquery-rails
+  jquery-ui-rails
   mini_magick
   mongoid
   mongoid-paperclip
+  mongoid_orderable
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   turbo-sprockets-rails3

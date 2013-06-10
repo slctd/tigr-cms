@@ -74,4 +74,11 @@ class PagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def sort
+    params[:page].each_with_index do |id, index|
+      Page.find(id).update_attribute(:position, index+1)
+    end
+    render nothing: true
+  end
 end

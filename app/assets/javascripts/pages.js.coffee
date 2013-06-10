@@ -7,3 +7,9 @@ jQuery ->
     $("form textarea").val CKEDITOR.instances.editable.getData()
     $("form").submit()
     false
+
+  $("#pages").sortable(
+    axis: 'y'
+    update: ->
+      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+  );

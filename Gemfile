@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'haml-rails'
 gem 'mongoid'
+gem 'mongoid_orderable'
 
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mini_magick'
@@ -32,6 +33,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
