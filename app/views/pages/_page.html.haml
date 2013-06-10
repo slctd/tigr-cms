@@ -1,11 +1,7 @@
 %h1= @page.title
-#editable{contenteditable: 'true'}
+#editable{contenteditable: 'true', 'data-update-url' => page_update_content_url(@page)}
   = raw @page.content
 
-
-.hide= render 'form'
-
-= link_to 'Save', '#', id: 'save-content'
 
 = link_to 'Back', root_path
 

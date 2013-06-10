@@ -4,6 +4,7 @@ TigrCms::Application.routes.draw do
   root to: 'pages#main'
 
   resources :pages do
+    post :update_content
     collection { post :sort }
   end
 

@@ -3,9 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $("#save-content").on "click", ->
-    $("form textarea").val CKEDITOR.instances.editable.getData()
-    $("form").submit()
+  $("#editable").on "blur", ->
+    url = $(this).data('update-url')
+    id = $(this).data('id')
+    $.post url, 
+      content: CKEDITOR.instances.editable.getData()
     false
 
   $("#pages").sortable(
