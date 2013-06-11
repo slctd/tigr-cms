@@ -6,16 +6,28 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    - if alert.present?
+      #alert.alert.alert-error
+        %a.close{"data-dismiss" => "alert", href: "#"} ×
+        = alert
+    - if notice.present?
+      #alert.alert.alert-success
+        %a.close{"data-dismiss" => "alert", href: "#"} ×
+        = notice
     .container
       = link_to 'Main', root_path
+      - if admin?
+        Admin
+        = link_to 'Logout', logout_path
       .row
         .span4
           .well.sidebar-nav
-            = content_tag :ul, class: 'nav nav-list', id: 'pages', data: {update_url: sort_pages_url} do
+            = content_tag :ul, class: 'nav nav-list', id: ('pages' if admin?), data: {update_url: sort_pages_url} do
               - @pages.each do |page|
                 = content_tag_for :li, page do
-                  = link_to page.title, "/#{page.permalink}"
-              %hr
-              = link_to 'New page', new_page_path
+                  = link_to_unless_current page.title, "/#{page.permalink}"
+              - if admin?
+                %hr
+                = link_to 'New page', new_page_path
         .span8
           = yield

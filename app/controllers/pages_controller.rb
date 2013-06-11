@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-
+  before_filter :authorize, except: [:main, :show]
   def main
     @page = Page.find_by(permalink: 'main')
   end

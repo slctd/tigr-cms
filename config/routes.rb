@@ -1,4 +1,9 @@
 TigrCms::Application.routes.draw do
+  resources :sessions
+  match 'login', to: 'sessions#new', as: :login
+  match 'logout', to: 'sessions#destroy', as: :logout
+
+
   mount Ckeditor::Engine => '/ckeditor'
 
   root to: 'pages#main'
@@ -8,10 +13,7 @@ TigrCms::Application.routes.draw do
     collection { post :sort }
   end
 
-  pages = %w(main)
-  pages.each do |page|
-    match page, to: "pages##{page}", as: page.to_sym
-  end
+  match 'main', to: 'pages#main', as: :main
 
   match ':permalink', to: 'pages#show'
 
