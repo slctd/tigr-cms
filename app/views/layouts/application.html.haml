@@ -31,3 +31,5 @@
                 = link_to 'New page', new_page_path
         .span8
           = yield
+      - unless admin?
+        = link_to 'Admin login', login_path
