@@ -1,6 +1,7 @@
 = semantic_form_for @page do |f|
   = f.inputs do
-    = f.input :permalink
+    - unless @page.main?
+      = f.input :permalink
     = f.input :title
     = f.input :content, as: :ckeditor
   = f.actions

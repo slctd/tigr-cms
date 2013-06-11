@@ -11,4 +11,8 @@ class Page
   field :content
 
   validates_uniqueness_of :permalink
+
+  def main?
+    permalink == 'main'
+  end
 end
