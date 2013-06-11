@@ -9,4 +9,6 @@ class Page
   field :permalink
   field :title
   field :content
+
+  validates_uniqueness_of :permalink
 end

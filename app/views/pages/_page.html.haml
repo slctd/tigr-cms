@@ -4,4 +4,5 @@
 
 -#= link_to 'Back', root_path
 
--#= link_to 'edit', edit_page_path(@page)
+= link_to 'Edit', edit_page_path(@page)
+= link_to 'Destroy', @page, method: :delete, data: { confirm: 'Are you sure?' }

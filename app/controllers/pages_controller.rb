@@ -1,15 +1,9 @@
 class PagesController < ApplicationController
 
-  pages = %w(main)
-
-  pages.each do |page|
-    define_method page do
-      @page = Page.find_by(permalink: page)
-    end
+  def main
+    @page = Page.find_by(permalink: 'main')
   end
 
-  # GET /pages/1
-  # GET /pages/1.json
   def show
     @page = Page.find_by(permalink: params[:permalink])
 
@@ -19,8 +13,6 @@ class PagesController < ApplicationController
     end
   end
 
-  # GET /pages/new
-  # GET /pages/new.json
   def new
     @page = Page.new
 
@@ -30,14 +22,16 @@ class PagesController < ApplicationController
     end
   end
 
-  # POST /pages
-  # POST /pages.json
+  def edit
+    @page = Page.find(params[:id])
+  end
+
   def create
     @page = Page.new(params[:page])
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to "/#{@page.permalink}", notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @page }
       else
         format.html { render action: "new" }
@@ -46,14 +40,12 @@ class PagesController < ApplicationController
     end
   end
 
-  # PUT /pages/1
-  # PUT /pages/1.json
   def update
     @page = Page.find(params[:id])
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.html { redirect_to "/#{@page.permalink}", notice: 'Page was successfully updated.' }
         format.json { head :no_content }
         format.js
       else
@@ -63,22 +55,20 @@ class PagesController < ApplicationController
     end
   end
 
-  def update_content
-    @page = Page.find(params[:page_id])
-    @page.update_attributes(content: params[:content])
-    render nothing: true
-  end
-
-  # DELETE /pages/1
-  # DELETE /pages/1.json
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
 
     respond_to do |format|
-      format.html { redirect_to pages_url }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
+  end
+
+  def update_content
+    @page = Page.find(params[:page_id])
+    @page.update_attributes(content: params[:content])
+    render nothing: true
   end
 
   def sort

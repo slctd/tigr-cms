@@ -15,5 +15,7 @@
               - @pages.each do |page|
                 = content_tag_for :li, page do
                   = link_to page.title, "/#{page.permalink}"
+              %hr
+              = link_to 'New page', new_page_path
         .span8
           = yield

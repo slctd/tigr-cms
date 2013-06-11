@@ -11,6 +11,7 @@ namespace :mongoid do
   desc "Symlink the mongoid.yml file into latest release"
   task :symlink, roles: :app do
     run "ln -nfs #{shared_path}/config/mongoid.yml #{release_path}/config/mongoid.yml"
+    run "ln -nfs #{shared_path}/ckeditor_assets #{release_path}/public/ckeditor_assets"
   end
   after "deploy:finalize_update", "mongoid:symlink"
 end
