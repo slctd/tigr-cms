@@ -1,3 +1,4 @@
-= form_for :session, url: sessions_path do
-  Password:
-  = text_field_tag :password
+= form_for :session, url: sessions_path do |f|
+  = text_field_tag :login
+  = password_field_tag :password
+  = submit_tag

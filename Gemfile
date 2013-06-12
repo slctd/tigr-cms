@@ -45,7 +45,11 @@ gem 'jquery-ui-rails'
 gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano', group: :development
+group  :development do
+  gem 'capistrano'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 # To use debugger
 # gem 'debugger'

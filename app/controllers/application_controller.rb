@@ -3,19 +3,21 @@ class ApplicationController < ActionController::Base
 
   before_filter :get_pages
 
-  private
+  protected
 
   def get_pages
     @pages = Page.all_without_main
   end
 
   def admin?
-    session[:password] == 'secret'
+    session[:login] == 'admin' && session[:password] == 'secret'
   end
   helper_method :admin?
 
   def authorize
-    unless admin?
+    if admin?
+      true
+    else
       flash[:alert] = 'Unauthorized'
       redirect_to root_path
       false
