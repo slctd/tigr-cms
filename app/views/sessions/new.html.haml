@@ -1,4 +1,4 @@
-= form_for :session, url: sessions_path do |f|
-  = text_field_tag :login
-  = password_field_tag :password
-  = submit_tag
+= semantic_form_for :session, url: sessions_path do |f|
+  = f.input :login
+  = f.input :password
+  = f.submit 'Login', class: 'btn'

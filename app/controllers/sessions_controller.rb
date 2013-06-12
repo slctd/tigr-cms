@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:login] = params[:login]
-    session[:password] = params[:password]
+    session[:login] = params[:session][:login]
+    session[:password] = params[:session][:password]
     if authorize
       flash[:notice] = 'Successfully logged in'
       redirect_to root_path
