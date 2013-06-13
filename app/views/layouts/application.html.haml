@@ -22,7 +22,7 @@
 
       = content_tag :ul, class: 'nav nav-tabs', id: ('menu' if admin?), data: {update_url: sort_pages_url} do
         - @menu_pages.each do |page|
-          = content_tag_for :li, page, class: ("active" if @page.root == page) do
+          = content_tag_for :li, page, class: ("active" if @page.try(:root) == page) do
             = link_to page.title, "/#{page.permalink}"
       .row
         .span4
