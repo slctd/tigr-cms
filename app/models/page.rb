@@ -1,8 +1,11 @@
 class Page
   include Mongoid::Document
-  include Mongoid::Orderable
 
+  include Mongoid::Orderable
   orderable
+
+  include Mongoid::Ancestry
+  has_ancestry
 
   scope :all_without_main, asc(:position).ne(permalink: 'main')
 

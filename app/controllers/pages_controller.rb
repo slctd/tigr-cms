@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find_by(permalink: params[:permalink])
+    @pages = @page.root.children
 
     respond_to do |format|
       format.html # show.html.erb

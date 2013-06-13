@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :get_pages
+  before_filter :get_menu_pages
 
   protected
 
-  def get_pages
-    @pages = Page.all_without_main
+  def get_menu_pages
+    @menu_pages ||= Page.all_without_main.roots
   end
 
   def admin?
