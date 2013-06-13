@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'haml-rails'
 gem 'mongoid'
 gem 'mongoid_orderable'
+gem 'mongoid-ancestry', github: 'skyeagle/mongoid-ancestry'
 
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mini_magick'
@@ -53,4 +54,3 @@ end
 
 # To use debugger
 # gem 'debugger'
-gem 'mongoid-ancestry'
