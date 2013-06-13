@@ -9,7 +9,13 @@ jQuery ->
       content: CKEDITOR.instances.editable.getData()
     false
 
-  $("#pages").sortable(
+  $("#menu").sortable(
+    axis: 'x'
+    update: ->
+      $.post($(this).data('update-url'), $(this).sortable('serialize'))
+  );
+
+  $("#submenu").sortable(
     axis: 'y'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))

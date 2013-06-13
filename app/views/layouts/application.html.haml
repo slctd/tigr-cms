@@ -20,9 +20,10 @@
         Admin
         = link_to 'Logout', logout_path
 
-      %ul.nav.nav-tabs#menu
+      = content_tag :ul, class: 'nav nav-tabs', id: ('menu' if admin?), data: {update_url: sort_pages_url} do
         - @menu_pages.each do |page|
-          %li{class: ("active" if @page.root == page)}= link_to page.title, "/#{page.permalink}"
+          = content_tag_for :li, page, class: ("active" if @page.root == page) do
+            = link_to page.title, "/#{page.permalink}"
       .row
         .span4
           - if @pages.present?

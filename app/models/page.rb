@@ -7,6 +7,7 @@ class Page
   include Mongoid::Ancestry
   has_ancestry
 
+  default_scope asc(:position)
   scope :all_without_main, asc(:position).ne(permalink: 'main')
 
   field :permalink

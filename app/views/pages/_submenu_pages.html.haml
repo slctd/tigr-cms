@@ -1,6 +1,6 @@
-= content_tag :ul, class: 'nav nav-list', id: ('pages' if admin?), data: {update_url: sort_pages_url} do
+= content_tag :ul, class: 'nav nav-list', id: ('submenu' if admin?), data: {update_url: sort_pages_url} do
   - pages.each do |page|
-    %li
+    = content_tag_for :li, page do
       = link_to_unless_current page.title, "/#{page.permalink}"
       = render 'submenu_pages', pages: page.children if page.children.present?
 
@@ -8,6 +8,3 @@
 
 
 
-  -#  - pages.each do |page|
-  -#    = content_tag_for :li, page do
-  -#      = link_to_unless_current page.title, "/#{page.permalink}"

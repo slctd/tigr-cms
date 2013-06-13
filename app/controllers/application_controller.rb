@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def get_menu_pages
-    @menu_pages ||= Page.all_without_main.roots
+    @menu_pages = Page.all_without_main.roots
   end
 
   def admin?

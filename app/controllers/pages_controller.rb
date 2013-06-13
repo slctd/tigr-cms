@@ -73,8 +73,14 @@ class PagesController < ApplicationController
   end
 
   def sort
-    params[:page].each_with_index do |id, index|
-      Page.find(id).update_attribute(:position, index+1)
+    pages = params[:page]
+    pp pages
+    positions = pages.map {|id| Page.find(id).position }.sort
+
+    pp positions
+    pages.each_with_index do |id, index|
+      puts "#{id} - #{index} - #{positions[index]}"
+      Page.find(id).update_attribute(:position, positions[index])
     end
     render nothing: true
   end
