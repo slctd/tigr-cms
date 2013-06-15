@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = Page.find_by(permalink: params[:permalink])
+    @page = Page.find_by(permalink: params[:permalink].split('/').last)
     @pages = @page.root.children
 
     respond_to do |format|

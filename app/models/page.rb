@@ -19,4 +19,8 @@ class Page
   def main?
     permalink == 'main'
   end
+
+  def path
+    '/' + (ancestors.pluck(:permalink) + [permalink]).join('/')
+  end
 end
