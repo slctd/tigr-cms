@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find_by(permalink: params[:permalink].split('/').last)
+    @version = @page.versions.find{|p| p.version == params[:version]} if params[:version]
     @pages = @page.root.children
 
     respond_to do |format|

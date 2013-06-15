@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $("#editable").on "blur", ->
-    url = $(this).data('update-url')
+  $("#save-editable").on "click ", ->
+    url = $('#editable').data('update-url')
     $.post url,
       content: CKEDITOR.instances.editable.getData()
     false

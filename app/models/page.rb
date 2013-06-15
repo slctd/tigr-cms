@@ -1,5 +1,6 @@
 class Page
   include Mongoid::Document
+  include Mongoid::Versioning
 
   include Mongoid::Orderable
   orderable
