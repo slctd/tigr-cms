@@ -16,3 +16,4 @@
 .idea/
 public/ckeditor_assets/
 public/uploads/
+config/deployer.yml

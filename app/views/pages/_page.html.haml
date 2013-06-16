@@ -1,8 +1,21 @@
-%h1= @page.title
-#editable{contenteditable: 'true', 'data-update-url' => page_update_content_url(@page), 'data-toolbar' => 'mini'}
+- page = @version.present? ? @version : @page
+
+%h1= page.title
+
+- if @page.version > 1
+  Versions:
+  - @page.versions.each do |p|
+    = link_to_unless_current p.version, "#{@page.path}?version=#{p.version}"
+  = link_to_if params[:version], 'current', @page.path
+
+- if admin?
+  #editable{contenteditable: 'true', data: {update_url: page_update_content_url(@page)}}
+    = raw page.content
+
+  = link_to 'Edit', edit_page_path(@page)
+  - unless @page.main?
+    = link_to 'Destroy', @page, method: :delete, data: { confirm: 'Are you sure?' }
+  .pull-right
+    = link_to 'Save', '#', id: 'save-editable'
+- else
   = raw @page.content
-
-
-= link_to 'Back', root_path
-
--#= link_to 'edit', edit_page_path(@page)

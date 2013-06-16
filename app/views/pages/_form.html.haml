@@ -1,0 +1,8 @@
+= semantic_form_for @page do |f|
+  = f.inputs do
+    - unless @page.main?
+      = f.input :permalink
+      = f.input :parent_id, as: :select, collection: (Page.all_without_main - [@page])
+    = f.input :title
+    = f.input :content, as: :ckeditor
+  = f.actions

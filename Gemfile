@@ -2,11 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'haml-rails'
 gem 'mongoid'
+gem 'mongoid_orderable'
+gem 'mongoid-ancestry', github: 'skyeagle/mongoid-ancestry'
 
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mini_magick'
@@ -32,6 +31,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -40,10 +40,14 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+group  :development do
+  gem 'capistrano'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 # To use debugger
 # gem 'debugger'

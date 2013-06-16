@@ -1,0 +1,10 @@
+= content_tag :ul, class: 'nav nav-list', id: ('submenu' if admin?), data: {update_url: sort_pages_url} do
+  - pages.each do |page|
+    = content_tag_for :li, page do
+      = link_to_unless_current page.title, page.path
+      = render 'submenu_pages', pages: page.children if page.children.present?
+
+
+
+
+

@@ -1,27 +1,13 @@
 class PagesController < ApplicationController
-
-  pages = %w(main)
-
-  pages.each do |page|
-    define_method page do
-      @page = Page.find_by(permalink: page)
-    end
-  end
-  # GET /pages
-  # GET /pages.json
-  def index
-    @pages = Page.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pages }
-    end
+  before_filter :authorize, except: [:main, :show]
+  def main
+    @page = Page.find_by(permalink: 'main')
   end
 
-  # GET /pages/1
-  # GET /pages/1.json
   def show
-    @page = Page.find(params[:id])
+    @page = Page.find_by(permalink: params[:permalink].split('/').last)
+    @version = @page.versions.find{|p| p.version == params[:version]} if params[:version]
+    @pages = @page.root.children
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,8 +15,6 @@ class PagesController < ApplicationController
     end
   end
 
-  # GET /pages/new
-  # GET /pages/new.json
   def new
     @page = Page.new
 
@@ -40,19 +24,16 @@ class PagesController < ApplicationController
     end
   end
 
-  # GET /pages/1/edit
   def edit
     @page = Page.find(params[:id])
   end
 
-  # POST /pages
-  # POST /pages.json
   def create
     @page = Page.new(params[:page])
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to "/#{@page.permalink}", notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @page }
       else
         format.html { render action: "new" }
@@ -61,14 +42,12 @@ class PagesController < ApplicationController
     end
   end
 
-  # PUT /pages/1
-  # PUT /pages/1.json
   def update
     @page = Page.find(params[:id])
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.html { redirect_to "/#{@page.permalink}", notice: 'Page was successfully updated.' }
         format.json { head :no_content }
         format.js
       else
@@ -78,21 +57,32 @@ class PagesController < ApplicationController
     end
   end
 
+  def destroy
+    @page = Page.find(params[:id])
+    @page.destroy
+
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.json { head :no_content }
+    end
+  end
+
   def update_content
     @page = Page.find(params[:page_id])
     @page.update_attributes(content: params[:content])
     render nothing: true
   end
 
-  # DELETE /pages/1
-  # DELETE /pages/1.json
-  def destroy
-    @page = Page.find(params[:id])
-    @page.destroy
+  def sort
+    pages = params[:page]
+    pp pages
+    positions = pages.map {|id| Page.find(id).position }.sort
 
-    respond_to do |format|
-      format.html { redirect_to pages_url }
-      format.json { head :no_content }
+    pp positions
+    pages.each_with_index do |id, index|
+      puts "#{id} - #{index} - #{positions[index]}"
+      Page.find(id).update_attribute(:position, positions[index])
     end
+    render nothing: true
   end
 end

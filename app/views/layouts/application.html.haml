@@ -1,10 +1,40 @@
 !!!
 %html
   %head
-    %title ICE.BEE
+    %title Tigr CMS
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    - if alert.present?
+      #alert.alert.alert-error
+        %a.close{"data-dismiss" => "alert", href: "#"} ×
+        = alert
+    - if notice.present?
+      #alert.alert.alert-success
+        %a.close{"data-dismiss" => "alert", href: "#"} ×
+        = notice
     .container
-      = yield
+      = link_to 'Main', root_path
+      - if admin?
+        Admin
+        = link_to 'Logout', logout_path
+
+      = content_tag :ul, class: 'nav nav-tabs', id: ('menu' if admin?), data: {update_url: sort_pages_url} do
+        - @menu_pages.each do |page|
+          = content_tag_for :li, page, class: ("active" if @page.try(:root) == page) do
+            = link_to page.title, "/#{page.permalink}"
+      .row
+        .span4
+          - if @pages.present?
+            .well.sidebar-nav
+              = render 'pages/submenu_pages', pages: @page.root.children
+
+        .span8
+          = yield
+
+      %hr
+      - if admin?
+        = link_to 'New page', new_page_path
+      - unless admin?
+        = link_to 'Admin login', login_path
