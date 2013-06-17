@@ -4,7 +4,7 @@
 
 jQuery ->
   $('#editable').on 'focus', ->
-    $('#save-editable').button('reset').toggleClass('btn-success', 'btn-primary')
+    $('#save-editable').button('reset').removeClass('btn-success')
     $('.tool-collapse').remove()
     $('#cke_1_toolbox').children('span:gt(4)').hide()
     $('#cke_1_top').append('<div class="tool-collapse" style="cursor:pointer;float:right;display:block;margin-right: 5px;font-size: 20px;margin-top: -10px;">...</div>')
