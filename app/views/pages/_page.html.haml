@@ -16,6 +16,6 @@
   - unless @page.main?
     = link_to 'Destroy', @page, method: :delete, data: { confirm: 'Are you sure?' }
   .pull-right
-    = link_to 'Save', '#', id: 'save-editable'
+    = link_to 'Save', '#', id: 'save-editable', class: 'btn btn-primary', data: {loading_text: 'Save...'}
 - else
   = raw @page.content
