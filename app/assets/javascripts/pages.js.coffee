@@ -3,6 +3,13 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+  $('#editable').on 'focus', ->
+    $('.tool-collapse').remove()
+    $('#cke_1_toolbox').children('span:gt(4)').hide()
+    $('#cke_1_top').append('<div class="tool-collapse" style="cursor:pointer;float:right;display:block;margin-right: 5px;font-size: 20px;margin-top: -10px;">...</div>')
+    $('.tool-collapse').on "click", ->
+      $(this).hide()
+      $('#cke_1_toolbox').children('span:gt(4)').show()
   $("#save-editable").on "click ", ->
     url = $('#editable').data('update-url')
     $.post url,
