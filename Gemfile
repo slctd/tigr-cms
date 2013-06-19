@@ -10,6 +10,7 @@ gem 'mongoid-ancestry', github: 'skyeagle/mongoid-ancestry'
 gem 'mongoid-paperclip', require: 'mongoid_paperclip'
 gem 'mini_magick'
 gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'best_in_place'
 
 gem 'formtastic'
 gem 'formtastic-bootstrap'
@@ -47,6 +48,8 @@ group  :development do
   gem 'capistrano'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'thin'
 end
 
 # To use debugger

@@ -16,6 +16,7 @@ class Page
   field :content
 
   validates_uniqueness_of :permalink
+  validates_format_of :permalink, with: /\A\w[\w|\-]+\w\z/
 
   def main?
     permalink == 'main'

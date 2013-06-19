@@ -16,4 +16,6 @@
 //= require twitter/bootstrap
 //= require ckeditor/init
 //= require ckeditor/config
+//= require jquery.purr
+//= require best_in_place
 //= require_tree .
