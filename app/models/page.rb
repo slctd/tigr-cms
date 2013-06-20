@@ -16,12 +16,17 @@ class Page
   field :content
 
   validates_uniqueness_of :permalink
+  validates_format_of :permalink, with: /\A\w[\w|\-]+\w\z/
 
   def main?
     permalink == 'main'
   end
 
   def path
-    '/' + (ancestors.pluck(:permalink) + [permalink]).join('/')
+    parent_path + '/' + permalink
+  end
+
+  def parent_path
+    '/' + ancestors.pluck(:permalink).join('/')
   end
 end

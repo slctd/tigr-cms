@@ -24,6 +24,8 @@
         - @menu_pages.each do |page|
           = content_tag_for :li, page, class: ("active" if @page.try(:root) == page) do
             = link_to page.title, "/#{page.permalink}"
+        - if admin?
+          %li{class: ('active' if params[:action] == 'new')}= link_to 'New page', new_page_path
       .row
         .span4
           - if @pages.present?
@@ -35,6 +37,6 @@
 
       %hr
       - if admin?
-        = link_to 'New page', new_page_path
+        = link_to 'New page', new_page_path(from_page: @page.permalink)
       - unless admin?
         = link_to 'Admin login', login_path

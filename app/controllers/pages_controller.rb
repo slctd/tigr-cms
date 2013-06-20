@@ -17,6 +17,10 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
+    if params[:from_page]
+      parent_page = Page.where(permalink: params[:from_page]).first
+      @page.parent_id = parent_page.id
+    end
 
     respond_to do |format|
       format.html # new.html.erb
