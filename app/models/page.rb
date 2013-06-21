@@ -27,6 +27,6 @@ class Page
   end
 
   def parent_path
-    '/' + ancestors.pluck(:permalink).join('/')
+    ancestry.nil? ? '/' : '/' + ancestors.pluck(:permalink).join('/') + '/'
   end
 end

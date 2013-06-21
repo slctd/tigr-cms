@@ -73,8 +73,11 @@ class PagesController < ApplicationController
 
   def update_content
     @page = Page.find(params[:page_id])
-    @page.update_attributes(content: params[:content])
-    render nothing: true
+    respond_to do |format|
+      if @page.update_attributes(content: params[:content], permalink: params[:permalink], title: params[:title], parent_id: params[:parent_id])
+        format.js
+      end
+    end
   end
 
   def sort

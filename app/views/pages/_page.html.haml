@@ -1,6 +1,17 @@
 - page = @version.present? ? @version : @page
+%h1#page_title= page.title
+=form_tag page_update_content_url(page), style: "display:none" do
+  = text_field_tag :title, page.title, class: "input-xxlarge"
+  %br
+  %span#prefix #{@page.parent_path}
 
-%h1= page.title
+  = text_field_tag :permalink, page.permalink
+  %select{name: 'parent_id', id: "parent_id"}
+    %option
+    - (Page.all_without_main - [@page]).each do |p|
+      %option{value: p.id, 'data-path' => p.permalink, selected: (p.id == page.parent_id ? "selected" : nil)} 
+        = p.title
+
 
 - if @page.version > 1
   Versions:
@@ -9,13 +20,13 @@
   = link_to_if params[:version], 'current', @page.path
 
 - if admin?
-  #editable{contenteditable: 'true', data: {update_url: page_update_content_url(@page)}}
+  #editable{contenteditable: 'true', data: { url: pages_url(page)}}
     = raw page.content
 
   = link_to 'Edit', edit_page_path(@page)
   - unless @page.main?
     = link_to 'Destroy', @page, method: :delete, data: { confirm: 'Are you sure?' }
   .pull-right
-    = link_to 'Save', '#', id: 'save-editable', class: 'btn btn-primary', data: {loading_text: 'Save...'}
+    = link_to 'Save', '#', id: 'save-editable', class: 'btn btn-primary', style: 'display:none', data: {loading_text: 'Save...'}
 - else
   = raw @page.content
