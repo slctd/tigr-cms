@@ -4,7 +4,6 @@
 
 jQuery ->
   form = $("form")
-  @url = $("#editable").data('url')
   $("#page_title").on 'click', ->
     $('#save-editable').show().button('reset').removeClass('btn-success')
     $(this).hide()
@@ -38,6 +37,7 @@ jQuery ->
           
       )
     false
+   
 
   $("#menu").sortable(
     axis: 'x'

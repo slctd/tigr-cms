@@ -15,7 +15,7 @@
 
 - if @page.version > 1
   Versions:
-  - @page.versions.each do |p|
+  - @page.versions.sort_by(&:version).each do |p|
     = link_to_unless_current p.version, "#{@page.path}?version=#{p.version}"
   = link_to_if params[:version], 'current', @page.path
 

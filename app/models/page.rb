@@ -23,7 +23,7 @@ class Page
   end
 
   def path
-    parent_path + '/' + permalink
+    parent_path + permalink
   end
 
   def parent_path
