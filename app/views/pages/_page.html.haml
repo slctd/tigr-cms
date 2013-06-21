@@ -20,7 +20,7 @@
   = link_to_if params[:version], 'current', @page.path
 
 - if admin?
-  #editable{contenteditable: 'true', data: { url: pages_url(page)}}
+  #editable{contenteditable: 'true'}
     = raw page.content
 
   = link_to 'Edit', edit_page_path(@page)
