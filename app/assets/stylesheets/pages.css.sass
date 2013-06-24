@@ -1,3 +1,9 @@
+@mixin translate($x, $y)
+  -webkit-transform: translate($x, $y)
+  -moz-transform: translate($x, $y)
+  -ms-transform: translate($x, $y)
+  -o-transform: translate($x, $y)
+  transform: translate($x, $y)
 .formtastic
   .input
     list-style-type: none
@@ -14,14 +20,21 @@
   float: right
   cursor: pointer
 .pickup
-  -webkit-transform: translate(0, -70px)
-  -moz-transform: translate(0, -70px)
-  transform: translate(0, -70px)
+  +translate(0, -70px)
 #page_title 
   line-height: 50px
+#page_path
+  color: #888
+  font-size: 16px
+#hide_link
+  margin-bottom: 10px
 .rotate
   -webkit-transform: rotate(180deg)
   -moz-transform: rotate(180deg)
   -ms-transform: rotate(180deg)
   -o-transform: rotate(180deg)
   transform: rotate(180deg)
+@media (max-width: 480px)
+  .pickup
+    position: fixed!important
+    top: 70px!important

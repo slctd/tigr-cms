@@ -6,11 +6,12 @@
       =form_tag page_update_content_url(page), style: "display:none" do
         %span#prefix #{@page.parent_path}
         = text_field_tag :permalink, page.permalink
-        %select{name: 'parent_id', id: "parent_id"}
-          %option
+        %select{name: 'parent_id', id: "parent_id", prompt: "Выберите родителя"}
+          %option Без родителя
           - (Page.all_without_main - [@page]).each do |p|
             %option{value: p.id, 'data-path' => p.permalink, selected: (p.id == page.parent_id ? "selected" : nil)} 
               = p.title
+        = link_to "Принять", "#", class: 'btn btn-mini btn-success', id: 'hide_link'
   %h1#page_title{contenteditable: 'true'}
     = page.title
 - else

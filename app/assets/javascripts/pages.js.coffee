@@ -4,11 +4,6 @@
 
 jQuery ->
   form = $("form")
-  $("#page_path").on 'click', ->
-    form.show()
-    $("#permalink").focus()
-    $('#save-editable').show().button('reset').removeClass('btn-success')
-    $(this).find('p').hide()
 
   $("#parent_id").on 'change', ->
     parent = $("#parent_id").find(':selected').data('path')
@@ -17,6 +12,15 @@ jQuery ->
     else
       $("#prefix").text("/" + parent + "/")
 
+  $("#page_path").find('p').on 'click', ->
+    form.show()
+    $("#permalink").focus()
+    $('#save-editable').show().button('reset').removeClass('btn-success')
+    $(this).hide()
+    $('#hide_link').on 'click', (e)->
+      new_url_path = '/' + $("#parent_id").find(':selected').data('path') + '/' + $("#permalink").val()
+      $(this).parent().hide()
+      $("#page_path").find('p').text(new_url_path).show()
   upArrow = '<a title="Свернуть панель инструментов" id="cke_1_toolbar_collapser" tabindex="-1" class="cke_toolbox_collapser"><span class="cke_arrow">▲</span></a>'
   
   $("#page_title").on 'focus', ->
