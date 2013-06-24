@@ -1,14 +1,15 @@
 - page = @version.present? ? @version : @page
-#page_path
-  %p= @page.path
-  =form_tag page_update_content_url(page), style: "display:none" do
-    %span#prefix #{@page.parent_path}
-    = text_field_tag :permalink, page.permalink
-    %select{name: 'parent_id', id: "parent_id"}
-      %option
-      - (Page.all_without_main - [@page]).each do |p|
-        %option{value: p.id, 'data-path' => p.permalink, selected: (p.id == page.parent_id ? "selected" : nil)} 
-          = p.title
+- unless @page.path == '/main'
+  #page_path
+    %p= @page.path
+    =form_tag page_update_content_url(page), style: "display:none" do
+      %span#prefix #{@page.parent_path}
+      = text_field_tag :permalink, page.permalink
+      %select{name: 'parent_id', id: "parent_id"}
+        %option
+        - (Page.all_without_main - [@page]).each do |p|
+          %option{value: p.id, 'data-path' => p.permalink, selected: (p.id == page.parent_id ? "selected" : nil)} 
+            = p.title
 %h1#page_title{contenteditable: 'true'}
   = page.title
 
