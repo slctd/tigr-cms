@@ -4,25 +4,36 @@
 
 jQuery ->
   form = $("form")
-  $("#page_title").on 'click', ->
-    $('#save-editable').show().button('reset').removeClass('btn-success')
-    $(this).hide()
+  $("#page_path").on 'click', ->
     form.show()
+    $("#permalink").focus()
+    $('#save-editable').show().button('reset').removeClass('btn-success')
+    $(this).find('p').hide()
+
   $("#parent_id").on 'change', ->
     parent = $("#parent_id").find(':selected').data('path')
     if parent is undefined
       $("#prefix").text("/")
     else
       $("#prefix").text("/" + parent + "/")
-   
+
+  upArrow = '<a title="Свернуть панель инструментов" id="cke_1_toolbar_collapser" tabindex="-1" class="cke_toolbox_collapser"><span class="cke_arrow">▲</span></a>'
+  
+  $("#page_title").on 'focus', ->
+    $("#cke_page_title").remove()
+    $('#save-editable').show().button('reset').removeClass('btn-success')
+
+  $('#editable').on 'mouseenter', ->
+    $('#cke_1_toolbox').children('span:lt(9)').hide()
+    $(this).off 'mouseenter'
   $('#editable').on 'focus', ->
     $('#save-editable').show().button('reset').removeClass('btn-success')
-    $('.tool-collapse').remove()
-    $('#cke_1_toolbox').children('span:gt(4)').hide()
-    $('#cke_1_top').append('<div class="tool-collapse" style="cursor:pointer;float:right;display:block;margin-right: 5px;font-size: 20px;margin-top: -10px;">...</div>')
-    $('.tool-collapse').on "click", ->
-      $(this).hide()
-      $('#cke_1_toolbox').children('span:gt(4)').show()
+    $('#cke_1_toolbar_collapser').remove()
+    $('#cke_1_top').append(upArrow)
+    $('#cke_1_toolbar_collapser').on "click", ->
+      $('#cke_1_toolbox').children('span:lt(9)').toggle()
+      $("#cke_editable").toggleClass('pickup')
+      $(this).toggleClass('rotate')
 
   $("#save-editable").on "click ", ->
     $("#page_title").text($("#title").val())
@@ -30,7 +41,7 @@ jQuery ->
     button.button('loading') 
     params = form.serialize()
     $.post(
-      form.attr('action') + "?" + params + "&content=" + CKEDITOR.instances.editable.getData(), (data) ->
+      form.attr('action') + "?" + params + "&content=" + CKEDITOR.instances.editable.getData() + "&title=" + CKEDITOR.instances.page_title.getData(), (data) ->
         if data.status == 'error'
           button.button('reset')
           button.append("<p>Something wrong</p>")
